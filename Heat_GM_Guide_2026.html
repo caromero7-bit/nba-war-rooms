@@ -197,6 +197,21 @@
   .feed .item .h{font-size:15.5px;font-weight:800;color:#fff;letter-spacing:.2px;line-height:1.3}
   .feed .item .s{font-size:12.5px;line-height:1.55;margin-top:3px}
   .feed .item{padding:11px 0}
+  /* ===== QUICK NAV + WAR BANNER ===== */
+  .quicknav{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 6px}
+  a.qn{display:inline-block;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel);
+    color:var(--text);font-size:13px;font-weight:700;letter-spacing:.4px;text-decoration:none;transition:transform .12s,border-color .12s}
+  a.qn:hover{transform:translateY(-2px);border-color:var(--heat-red2);color:var(--heat-yellow);text-decoration:none}
+  a.qn-war{background:linear-gradient(135deg,var(--heat-red),var(--heat-red2));color:#fff;border-color:var(--heat-red2);
+    font-weight:900;letter-spacing:1.5px;box-shadow:0 0 18px rgba(200,16,46,.35)}
+  a.qn-war:hover{color:#fff;box-shadow:0 0 28px rgba(200,16,46,.55)}
+  .warbanner{position:relative;overflow:hidden;margin:6px 0 26px;padding:38px 28px;border-radius:18px;
+    background:linear-gradient(135deg,var(--heat-red) 0%,#0b0b0f 72%);border:1px solid var(--heat-red2)}
+  .warbanner::after{content:"";position:absolute;right:-80px;top:-80px;width:340px;height:340px;
+    background:radial-gradient(circle,rgba(255,255,255,.10),transparent 65%);pointer-events:none}
+  .wb1{font-size:56px;font-weight:900;letter-spacing:3px;line-height:.95;color:#fff;text-shadow:0 6px 34px rgba(0,0,0,.65)}
+  .wb2{margin-top:12px;font-size:15px;font-weight:800;letter-spacing:3.5px;color:var(--heat-yellow)}
+  @media(max-width:1100px){.wb1{font-size:34px}.wb2{letter-spacing:2px;font-size:12.5px}}
 </style>
 </head>
 <body>
@@ -215,8 +230,6 @@
   <a class="link" href="Spurs_GM_Guide_2026.html" style="color:#c4ced4;font-weight:700;border:1px solid #3a4148;border-radius:8px;margin-bottom:4px">&#8644; Spurs War Room</a>
   <a class="link" href="Bulls_GM_Guide_2026.html" style="color:#ce1141;font-weight:700;border:1px solid #4a1620;border-radius:8px;margin-bottom:6px">&#8644; Bulls War Room</a>
   <a class="link" href="#newswire">Newswire Hub</a>
-  <a class="link" href="#tool">Salary Cap Machine</a>
-  <a class="link" href="#trademachine">Trade Machine</a>
   <div class="cat">Front Office</div>
   <a class="link" href="#exec">Executive Summary</a>
   <a class="link" href="#league">League Overview</a>
@@ -239,6 +252,9 @@
   <a class="link" href="#power">Power Rankings</a>
   <a class="link" href="#contracts">Best/Worst Contracts</a>
   <a class="link" href="#predictions">Predictions & Awards</a>
+  <div class="cat">Toolbox</div>
+  <a class="link" href="#tool">Salary Cap Machine</a>
+  <a class="link" href="#trademachine">Trade Machine</a>
   <div class="cat">Meta</div>
   <a class="link" href="#changelog">Changelog</a>
   <a class="link" href="#sources">Sources</a>
@@ -266,6 +282,16 @@
       <span class="tkmove"><b style="font-size:12.5px;color:var(--text)">Latest:</b> Jonathan Kuminga re-signs with Atlanta ($24.3M) · Jul 1, late night</span></div>
     <div class="tkrow"><span class="tklabel">HEAT · since the last Miami move</span><b id="tkClockTeam">—</b>
       <span class="tkmove"><b style="font-size:12.5px;color:var(--text)">Latest:</b> Tim Hardaway Jr. signs (1yr/$6.5M) · Jul 1</span></div>
+  </div>
+  <div class="quicknav">
+    <a class="qn qn-war" href="#war">&#9658; THE WAR ROOM</a>
+    <a class="qn" href="#newswire">News</a>
+    <a class="qn" href="#fa">Free Agency</a>
+    <a class="qn" href="#lebron">LeBron Watch</a>
+    <a class="qn" href="#trades">Trades</a>
+    <a class="qn" href="#draft">Draft</a>
+    <a class="qn" href="#power">Rankings</a>
+    <a class="qn" href="#tool">Cap &amp; Trade Machines</a>
   </div>
   <div class="metarow">
     <div class="chip">Updated: <b>Jul 1, 2026 · late night</b></div>
@@ -344,136 +370,6 @@
   </div>
   <p class="muted" style="font-size:12px">Compiled from verified reporting — ESPN, NBA.com, Yahoo, NBC, Spotrac. For breaking, unconfirmed items in real time, hit the live launchpad above.</p>
 </section>
-
-<!-- ============ INTERACTIVE TOOL ============ -->
-<section id="tool">
-  <h2>Salary Cap Machine <span class="pill hot">v2 · All 30 teams</span></h2>
-  <p class="muted">Place any player on any team and watch the money move. Pick a destination and a target, choose how you'd acquire him, and drag the salary slider — the machine recalculates total payroll, the distance to every line, an <b>estimated luxury-tax bill</b>, and a live list of <b>exactly which roster tools that team loses</b> at its new spending tier. Committed payrolls are projected 2026-27 figures; confirm against Spotrac before any real transaction.</p>
-
-  <div class="toolbox">
-    <div class="toolgrid">
-      <div>
-        <label class="fld" for="teamSel">Destination team</label>
-        <select id="teamSel"></select>
-        <div class="muted" id="teamMeta" style="font-size:12px;margin-top:4px"></div>
-
-        <label class="fld" for="playerSel">Player to add</label>
-        <select id="playerSel"></select>
-
-        <label class="fld" for="salRange">Incoming first-year salary: <b id="salLabel" style="color:var(--heat-yellow)"></b></label>
-        <input id="salRange" type="range" min="1.3" max="65" step="0.1" value="20">
-
-        <label class="fld" for="method">Acquisition method</label>
-        <select id="method">
-          <option value="cap">Cap space / outright signing</option>
-          <option value="bird">Bird rights (re-sign own FA)</option>
-          <option value="mle">Non-taxpayer MLE (~$14.1M) — hard-caps @ 1st apron</option>
-          <option value="taxmle">Taxpayer MLE (~$5.7M)</option>
-          <option value="bae">Bi-Annual Exception (~$5.2M) — hard-caps @ 1st apron</option>
-          <option value="min">Veteran minimum (~$2.3M)</option>
-          <option value="snt">Sign-and-trade — hard-caps @ 1st apron</option>
-          <option value="trade">Trade (matching salary goes out)</option>
-        </select>
-
-        <div class="note" id="methodNote" style="margin-top:14px"></div>
-      </div>
-
-      <div>
-        <div class="readout">
-          <div class="muted" style="font-size:12px;letter-spacing:1px;text-transform:uppercase" id="roTeam">Miami Heat</div>
-          <div class="bigdollar" id="roTotal">$0.0M</div>
-          <div class="muted" style="font-size:12px" id="roSub">Projected total team salary after move</div>
-
-          <div class="barwrap" style="margin-top:26px">
-            <div class="track">
-              <div class="fill" id="barFill" style="width:0%"></div>
-              <div class="mk" id="mkCap"><span>Cap</span></div>
-              <div class="mk" id="mkTax"><span>Tax</span></div>
-              <div class="mk" id="mkA1"><span>1st Apron</span></div>
-              <div class="mk" id="mkA2"><span>2nd Apron</span></div>
-            </div>
-          </div>
-
-          <div style="margin-top:20px" id="flags"></div>
-
-          <div class="line" style="margin-top:10px"><span>Distance to luxury tax</span><b id="dTax">—</b></div>
-          <div class="line"><span>Distance to 1st apron</span><b id="dA1">—</b></div>
-          <div class="line"><span>Distance to 2nd apron</span><b id="dA2">—</b></div>
-          <div class="line"><span>Estimated luxury-tax bill</span><b id="taxBill" style="color:var(--heat-yellow)">—</b></div>
-
-          <div id="verdict" class="scout" style="margin-top:12px;font-size:13.5px"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- consequence panel -->
-    <div style="margin-top:18px">
-      <h4 style="margin:6px 0">What this spending tier means for <span id="consTeam" style="color:#fff">Miami</span></h4>
-      <div id="consequences" class="scout"></div>
-    </div>
-  </div>
-
-  <!-- static reference: the apron ladder -->
-  <h3>The apron ladder — what each line actually does</h3>
-  <div class="grid3">
-    <div class="card">
-      <h4 style="color:#f5cd6b">Luxury Tax · $200.43M</h4>
-      <p class="scout">A <b>dollar penalty</b>, not a hard restriction. Teams pay an escalating tax on every dollar over the line ($1.50 → $1.75 → $2.50 → $3.25 …). <b>Repeater</b> teams (taxed in 3 of the last 4 years) pay a punitive surcharge on top. You can still sign, trade, and use every exception.</p>
-    </div>
-    <div class="card">
-      <h4 style="color:#ffab6b">First Apron · $209.02M</h4>
-      <p class="scout">The first real handcuff. A team over it <b>cannot</b>: use the full non-taxpayer MLE (drops to the ~$5.7M taxpayer MLE), use the Bi-Annual Exception, acquire players via sign-and-trade, sign a buyout player who earned above the NT-MLE, or take back more salary than it sends in a trade. Using the NT-MLE, BAE, or a sign-and-trade <b>hard-caps</b> you here for the whole season.</p>
-    </div>
-    <div class="card">
-      <h4 style="color:#ff8a80">Second Apron · $221.69M</h4>
-      <p class="scout">The nuclear tier. Everything above <b>plus</b>: no MLE at all, cannot aggregate two+ salaries in a trade, cannot send cash in trades, cannot trade a first-round pick seven years out (and it gets frozen/moved to the back of round one). This is designed to force even the richest owners to break up rosters.</p>
-    </div>
-  </div>
-  <p class="muted" style="font-size:12px;margin-top:10px">Planning aid, not the league's official calculator. Trade mode applies simplified salary-matching (outgoing salary offsets most of the incoming figure); real matching bands and pick/aggregation rules require a capologist's review.</p>
-</section>
-
-<!-- ============ TRADE MACHINE ============ -->
-<section id="trademachine">
-  <h2>Trade Machine <span class="pill hot">v2 · 2 &amp; 3-team</span></h2>
-  <p class="muted">Build a two- OR three-team trade and test whether it's legal. For each team, add the salary it <b>sends out</b> (quick-pick a team's notable contracts or type a custom figure) and set how much it <b>takes back</b>. The machine checks per-team salary-matching, apron restrictions (100% take-back over the first apron, no aggregation over the second), hard caps, and whether the whole deal <b>balances</b> — then shows every team's post-trade payroll and apron tier.</p>
-
-  <div style="margin:6px 0 14px">
-    <label class="fld" style="display:inline;margin-right:8px">Teams in deal:</label>
-    <label style="margin-right:14px"><input type="radio" name="tmMode" value="2" checked> 2 teams</label>
-    <label><input type="radio" name="tmMode" value="3"> 3 teams</label>
-  </div>
-
-  <div style="margin:0 0 14px">
-    <span class="fld" style="display:inline;margin-right:6px">Dream templates:</span>
-    <button class="tmpl-btn" data-tpl="simons">Simons → MIA (2-team)</button>
-    <button class="tmpl-btn" data-tpl="mpj">Porter Jr. → MIA (3-team)</button>
-    <button class="tmpl-btn" data-tpl="brown">Jaylen Brown → MIA (3-team)</button>
-  </div>
-
-  <div class="toolbox">
-    <div class="grid3" id="tmTeamGrid"><!-- team cards injected --></div>
-
-    <div class="readout" style="margin-top:16px">
-      <div id="tmVerdict" style="font-size:17px;font-weight:800;margin-bottom:6px">Add salary to evaluate…</div>
-      <div class="line"><span>Total sent (all teams)</span><b id="tmSumOut">$0.0M</b></div>
-      <div class="line"><span>Total taken back (all teams)</span><b id="tmSumIn">$0.0M</b></div>
-      <div class="line"><span>Deal balance</span><b id="tmBalance">—</b></div>
-      <div id="tmResults" style="margin-top:12px"></div>
-      <div id="tmNotes" class="scout" style="margin-top:12px;font-size:13px"></div>
-      <button id="tmReset" class="tmbtn" style="margin-top:12px">Reset trade</button>
-    </div>
-  </div>
-  <p class="muted" style="font-size:12px;margin-top:10px">Simplified matching: under the first apron a team may take back up to ~200%+$0.25M of what it sends; over the first apron it's capped at ~100%+$0.25M; over the second apron it's 100% and it cannot aggregate multiple outgoing salaries into one incoming player. In a valid trade, total taken back must equal total sent (within rounding). Draft picks/cash aren't modeled — add them around a balanced core. Confirm with a capologist before any real deal.</p>
-</section>
-<style>
-.tmbtn{background:var(--heat-red2);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:13px;font-weight:600;cursor:pointer}
-.tmbtn:hover{background:var(--heat-red)}
-.tmchip{display:inline-flex;align-items:center;gap:6px;background:#0e1017;border:1px solid var(--line);border-radius:14px;padding:4px 10px;font-size:12px;margin:3px 4px 3px 0}
-.tmchip button{background:none;border:none;color:var(--bad);cursor:pointer;font-size:14px;line-height:1;padding:0}
-.tmnum{background:#0e1017;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
-.tmnum:disabled{opacity:.55}
-.tmcard-res{background:#0c0e14;border:1px solid var(--line);border-radius:10px;padding:12px;margin:6px 0}
-</style>
 
 <!-- ============ EXECUTIVE SUMMARY ============ -->
 <section id="exec">
@@ -786,8 +682,10 @@
 
 <!-- ============ MIAMI WAR ROOM ============ -->
 <section id="war">
-  <h2><span class="num">08</span>Miami Heat War Room <span class="pill hot">Priority Section</span></h2>
-  <p class="lead">This is the document's core. Everything above sets the table; what follows is the plan Pat Riley's front office would run from July 1 to opening night.</p>
+  <div class="warbanner">
+    <div class="wb1">THE WAR ROOM</div>
+    <div class="wb2">GIANNIS. BAM. ONE SHOOTER FROM A PARADE.</div>
+  </div>
 
   <div class="teamhdr" style="margin-top:8px">
     <h3 style="margin:0">Miami Heat</h3>
@@ -1262,11 +1160,141 @@
   <p class="muted" style="font-size:12px">Championship odds and award boards are directional and will be re-priced each update as rosters finalize.</p>
 </section>
 
+<!-- ============ INTERACTIVE TOOL ============ -->
+<section id="tool">
+  <h2>Salary Cap Machine <span class="pill hot">v2 · All 30 teams</span></h2>
+  <p class="muted">Place any player on any team and watch the money move. Pick a destination and a target, choose how you'd acquire him, and drag the salary slider — the machine recalculates total payroll, the distance to every line, an <b>estimated luxury-tax bill</b>, and a live list of <b>exactly which roster tools that team loses</b> at its new spending tier. Committed payrolls are projected 2026-27 figures.</p>
+
+  <div class="toolbox">
+    <div class="toolgrid">
+      <div>
+        <label class="fld" for="teamSel">Destination team</label>
+        <select id="teamSel"></select>
+        <div class="muted" id="teamMeta" style="font-size:12px;margin-top:4px"></div>
+
+        <label class="fld" for="playerSel">Player to add</label>
+        <select id="playerSel"></select>
+
+        <label class="fld" for="salRange">Incoming first-year salary: <b id="salLabel" style="color:var(--heat-yellow)"></b></label>
+        <input id="salRange" type="range" min="1.3" max="65" step="0.1" value="20">
+
+        <label class="fld" for="method">Acquisition method</label>
+        <select id="method">
+          <option value="cap">Cap space / outright signing</option>
+          <option value="bird">Bird rights (re-sign own FA)</option>
+          <option value="mle">Non-taxpayer MLE (~$14.1M) — hard-caps @ 1st apron</option>
+          <option value="taxmle">Taxpayer MLE (~$5.7M)</option>
+          <option value="bae">Bi-Annual Exception (~$5.2M) — hard-caps @ 1st apron</option>
+          <option value="min">Veteran minimum (~$2.3M)</option>
+          <option value="snt">Sign-and-trade — hard-caps @ 1st apron</option>
+          <option value="trade">Trade (matching salary goes out)</option>
+        </select>
+
+        <div class="note" id="methodNote" style="margin-top:14px"></div>
+      </div>
+
+      <div>
+        <div class="readout">
+          <div class="muted" style="font-size:12px;letter-spacing:1px;text-transform:uppercase" id="roTeam">Miami Heat</div>
+          <div class="bigdollar" id="roTotal">$0.0M</div>
+          <div class="muted" style="font-size:12px" id="roSub">Projected total team salary after move</div>
+
+          <div class="barwrap" style="margin-top:26px">
+            <div class="track">
+              <div class="fill" id="barFill" style="width:0%"></div>
+              <div class="mk" id="mkCap"><span>Cap</span></div>
+              <div class="mk" id="mkTax"><span>Tax</span></div>
+              <div class="mk" id="mkA1"><span>1st Apron</span></div>
+              <div class="mk" id="mkA2"><span>2nd Apron</span></div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px" id="flags"></div>
+
+          <div class="line" style="margin-top:10px"><span>Distance to luxury tax</span><b id="dTax">—</b></div>
+          <div class="line"><span>Distance to 1st apron</span><b id="dA1">—</b></div>
+          <div class="line"><span>Distance to 2nd apron</span><b id="dA2">—</b></div>
+          <div class="line"><span>Estimated luxury-tax bill</span><b id="taxBill" style="color:var(--heat-yellow)">—</b></div>
+
+          <div id="verdict" class="scout" style="margin-top:12px;font-size:13.5px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- consequence panel -->
+    <div style="margin-top:18px">
+      <h4 style="margin:6px 0">What this spending tier means for <span id="consTeam" style="color:#fff">Miami</span></h4>
+      <div id="consequences" class="scout"></div>
+    </div>
+  </div>
+
+  <!-- static reference: the apron ladder -->
+  <details style="font-size:12.5px"><summary>The apron ladder — what each line actually does</summary>
+  <div class="grid3" style="font-size:12.5px">
+    <div class="card">
+      <h4 style="color:#f5cd6b">Luxury Tax · $200.43M</h4>
+      <p class="scout">A <b>dollar penalty</b>, not a hard restriction. Teams pay an escalating tax on every dollar over the line ($1.50 → $1.75 → $2.50 → $3.25 …). <b>Repeater</b> teams (taxed in 3 of the last 4 years) pay a punitive surcharge on top. You can still sign, trade, and use every exception.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:#ffab6b">First Apron · $209.02M</h4>
+      <p class="scout">The first real handcuff. A team over it <b>cannot</b>: use the full non-taxpayer MLE (drops to the ~$5.7M taxpayer MLE), use the Bi-Annual Exception, acquire players via sign-and-trade, sign a buyout player who earned above the NT-MLE, or take back more salary than it sends in a trade. Using the NT-MLE, BAE, or a sign-and-trade <b>hard-caps</b> you here for the whole season.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:#ff8a80">Second Apron · $221.69M</h4>
+      <p class="scout">The nuclear tier. Everything above <b>plus</b>: no MLE at all, cannot aggregate two+ salaries in a trade, cannot send cash in trades, cannot trade a first-round pick seven years out (and it gets frozen/moved to the back of round one). This is designed to force even the richest owners to break up rosters.</p>
+    </div>
+  </div>
+  </details>
+</section>
+
+<!-- ============ TRADE MACHINE ============ -->
+<section id="trademachine">
+  <h2>Trade Machine <span class="pill hot">v2 · 2 &amp; 3-team</span></h2>
+  <p class="muted">Build a two- OR three-team trade and test whether it's legal. For each team, add the salary it <b>sends out</b> (quick-pick a team's notable contracts or type a custom figure) and set how much it <b>takes back</b>. The machine checks per-team salary-matching, apron restrictions (100% take-back over the first apron, no aggregation over the second), hard caps, and whether the whole deal <b>balances</b> — then shows every team's post-trade payroll and apron tier.</p>
+
+  <div style="margin:6px 0 14px">
+    <label class="fld" style="display:inline;margin-right:8px">Teams in deal:</label>
+    <label style="margin-right:14px"><input type="radio" name="tmMode" value="2" checked> 2 teams</label>
+    <label><input type="radio" name="tmMode" value="3"> 3 teams</label>
+  </div>
+
+  <div style="margin:0 0 14px">
+    <span class="fld" style="display:inline;margin-right:6px">Dream templates:</span>
+    <button class="tmpl-btn" data-tpl="simons">Simons → MIA (2-team)</button>
+    <button class="tmpl-btn" data-tpl="mpj">Porter Jr. → MIA (3-team)</button>
+    <button class="tmpl-btn" data-tpl="brown">Jaylen Brown → MIA (3-team)</button>
+  </div>
+
+  <div class="toolbox">
+    <div class="grid3" id="tmTeamGrid"><!-- team cards injected --></div>
+
+    <div class="readout" style="margin-top:16px">
+      <div id="tmVerdict" style="font-size:17px;font-weight:800;margin-bottom:6px">Add salary to evaluate…</div>
+      <div class="line"><span>Total sent (all teams)</span><b id="tmSumOut">$0.0M</b></div>
+      <div class="line"><span>Total taken back (all teams)</span><b id="tmSumIn">$0.0M</b></div>
+      <div class="line"><span>Deal balance</span><b id="tmBalance">—</b></div>
+      <div id="tmResults" style="margin-top:12px"></div>
+      <div id="tmNotes" class="scout" style="margin-top:12px;font-size:13px"></div>
+      <button id="tmReset" class="tmbtn" style="margin-top:12px">Reset trade</button>
+    </div>
+  </div>
+</section>
+<style>
+.tmbtn{background:var(--heat-red2);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:13px;font-weight:600;cursor:pointer}
+.tmbtn:hover{background:var(--heat-red)}
+.tmchip{display:inline-flex;align-items:center;gap:6px;background:#0e1017;border:1px solid var(--line);border-radius:14px;padding:4px 10px;font-size:12px;margin:3px 4px 3px 0}
+.tmchip button{background:none;border:none;color:var(--bad);cursor:pointer;font-size:14px;line-height:1;padding:0}
+.tmnum{background:#0e1017;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
+.tmnum:disabled{opacity:.55}
+.tmcard-res{background:#0c0e14;border:1px solid var(--line);border-radius:10px;padding:12px;margin:6px 0}
+</style>
+
 <!-- ============ CHANGELOG ============ -->
 <section id="changelog">
   <h2><span class="num">18</span>Changelog</h2>
   <table>
     <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+    <tr><td><b>NEW</b></td><td>Jul 1, 2026</td><td><b>Reader-first layout:</b> category quick-nav buttons in the hero (War Room button front and center), Cap &amp; Trade Machines moved to the bottom of the page (jump button up top), apron explainer collapsed and shrunk, all "planning aid / consult a capologist" fine print deleted, and the War Room sections rebuilt as full-width banners.</td></tr>
     <tr><td><b>2.1</b></td><td>Jul 1, 2026</td><td>Split the hero ticker into two labeled clocks — league-wide ("NBA · since the last league move") and team-specific. Trimmed the rally bar to a single saying for impact.</td></tr>
     <tr><td><b>2.0</b></td><td>Jul 1, 2026</td><td><b>News-front redesign:</b> hero now leads with a Top Story banner and a live "since the last move" ticker (counts up from the most recent verified transaction). Removed the "How to use this document" box and the version chip — the page reads like a team news destination, not a manual. Version tracking lives here in the changelog only. Moved the Salary Cap Machine and Trade Machine below the Newswire so the news leads the page.</td></tr>
     <tr><td><b>1.9</b></td><td>Jul 1, 2026</td><td>Added the <b>&#8644; Bulls War Room</b> switch link (third companion edition launched). Corrected the Bulls team report: Coby White (→ CHA) and Vučević (off the books) removed; Zach Collins, Okoro, Dillingham and the $9.4M room exception added.</td></tr>
@@ -1310,7 +1338,7 @@
     <li><a href="https://www.nbcsports.com/nba/news/2026-nba-draft-complete-list-of-every-pick-from-round-1-and-round-2">NBC — complete draft list, all 60 picks</a></li>
     <li><a href="https://sports.yahoo.com/nba/live/nba-free-agency-2026-james-harden-declines-option-while-negotiating-with-cavs-lebron-james-lakers-decision-looms-182955882.html">Yahoo — Harden/Cavs negotiations</a></li>
   </ul>
-  <p class="foot">Prepared as an internal front-office strategy document. Financial figures are projections based on public reporting and are planning aids, not official league calculations. Confirm all cap math with Spotrac/team capologists before any transaction. — Heat War Room, v1.0, July 1, 2026.</p>
+  <p class="foot">Built by the group chat, powered by public reporting (ESPN, NBA.com, Spotrac, Yahoo, NBC). Not affiliated with the NBA or any team. See something wrong? Take it up with the commissioner.</p>
 </section>
 
 </main>
