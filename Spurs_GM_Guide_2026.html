@@ -170,8 +170,19 @@
   .teamhdr{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
   .teamhdr .rec{color:var(--muted);font-size:13px}
   .scout{font-size:13.5px}
+  .mobnav-btn,.mobnav-panel{display:none}
   @media(max-width:1000px){
     nav{display:none}
+    .mobnav-btn{display:flex;align-items:center;gap:7px;position:fixed;right:14px;bottom:16px;z-index:120;background:#0f1218;color:var(--heat-yellow);font-weight:800;font-size:13px;letter-spacing:1px;border:1.5px solid var(--heat-red2);border-radius:30px;padding:12px 17px;box-shadow:0 6px 22px rgba(0,0,0,.55);cursor:pointer}
+    .mobnav-btn .ic{color:var(--heat-red2);font-size:15px;line-height:1}
+    .mobnav-panel{display:block;position:fixed;inset:0;z-index:130;background:rgba(7,9,13,.975);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:54px 16px 40px;transform:translateY(100%);transition:transform .24s ease}
+    .mobnav-panel.open{transform:translateY(0)}
+    .mobnav-close{position:fixed;top:9px;right:12px;z-index:140;background:none;border:none;color:#fff;font-size:34px;line-height:1;cursor:pointer;padding:2px 10px}
+    .mobnav-panel .mhead{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--heat-red2);font-weight:800;margin:2px 8px 10px}
+    .mobnav-panel a.link{display:block;color:var(--muted);padding:11px 12px;border-radius:8px;font-size:16px;margin:1px 0;text-decoration:none}
+    .mobnav-panel a.link.mia{color:var(--heat-yellow);font-weight:600}
+    .mobnav-panel .cat{font-size:11px;letter-spacing:1.5px;color:#5f6675;text-transform:uppercase;margin:16px 8px 6px}
+    body.mobnav-lock{overflow:hidden}
     main{padding:0 18px 90px}
     .toolgrid,.grid2,.grid3,.toc-grid,.two-col-list{grid-template-columns:1fr;columns:1}
     h1.title{font-size:30px}
@@ -259,6 +270,13 @@
   <a class="link" href="#changelog">Changelog</a>
 </nav>
 
+<button class="mobnav-btn" id="mobnavBtn" aria-label="Jump to a section"><span class="ic">&#9776;</span> SECTIONS</button>
+<div class="mobnav-panel" id="mobnavPanel" aria-hidden="true">
+  <button class="mobnav-close" id="mobnavClose" aria-label="Close section menu">&times;</button>
+  <div class="mhead">Jump to a section</div>
+  <div id="mobnavLinks"></div>
+</div>
+
 <!-- ============ MAIN ============ -->
 <main>
 
@@ -278,7 +296,7 @@
   </div>
   <div class="ticker">
     <div class="tkrow"><span class="tklabel">NBA · since the last league move</span><b id="tkClock">—</b>
-      <span class="tkmove"><b style="font-size:12.5px;color:var(--text)">Latest:</b> Jonathan Kuminga re-signs with Atlanta ($24.3M) · Jul 1, late night</span></div>
+      <span class="tkmove"><b style="font-size:12.5px;color:var(--text)">Latest:</b> 76ers sign Anfernee Simons · Jul 2</span></div>
     <div class="tkrow"><span class="tklabel">SPURS · since the last San Antonio move</span><b id="tkClockTeam">—</b>
       <span class="tkmove"><b style="font-size:12.5px;color:var(--text)">Latest:</b> Julian Champagnie re-signs (3yr/$45M) · Jul 1, late</span></div>
   </div>
@@ -293,7 +311,7 @@
     <a class="qn" href="#tool">Cap &amp; Trade Machines</a>
   </div>
   <div class="metarow">
-    <div class="chip">Updated: <b>Jul 1, 2026 · late night</b></div>
+    <div class="chip">Updated: <b>Jul 2, 2026 · afternoon</b></div>
     <div class="chip">2026-27 Cap: <b>$164.96M</b></div>
     <div class="chip">1st Apron: <b>$209.02M</b></div>
     <div class="chip">2nd Apron: <b>$221.69M</b></div>
@@ -356,11 +374,12 @@
     <a class="readmore" href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank" rel="noopener">Read the full exclusive →</a>
   </div>
 
-  <h3 style="margin-top:24px">Latest Verified Reports <span class="muted" style="font-size:12px">— last refreshed Jul 1, 2026 (late night)</span></h3>
+  <h3 style="margin-top:24px">Latest Verified Reports <span class="muted" style="font-size:12px">— last refreshed Jul 2, 2026 (afternoon)</span></h3>
   <div class="feed">
-    <div class="item"><div class="d">Jul 1 · <span class="breaking">New</span>Multiple</div><div class="h">KUMINGA U-TURN: BACK TO ATLANTA ON $24.3M</div><div class="s muted">Hours after the Hawks declined his team option, they re-signed him at the same number. Also in the late wave: Kelly Oubre Jr. → Pacers (2yr/~$17M), Julian Champagnie re-signs SAS (3/$45M), Sandro Mamukelashvili → Lakers (4/$52M). <a href="https://sports.yahoo.com/articles/nba-free-agency-2026-winners-150005370.html" target="_blank">Source ↗</a></div></div>
-    <div class="item"><div class="d">Jul 1 · <span class="breaking">New</span>CBS/Yahoo</div><div class="h">ROBINSON'S BOSTON DEAL LANDS AT 3YR/$47.4M</div><div class="s muted">Meanwhile the last big RFA standoff: Jalen Duren met the Lakers twice, Detroit intends to match anything, and Sacramento is lurking. <a href="https://www.cbssports.com/nba/news/nba-free-agency-2026-live-updates-trade-rumors-news-june-30/live/" target="_blank">Source ↗</a></div></div>
-    <div class="item"><div class="d">Jul 1 · <span class="breaking">New</span>Yahoo</div><div class="h">DRAYMOND'S OPT-OUT WAS A LEBRON PLAY</div><div class="s muted">Green walked away from a guaranteed $27.7M specifically to open Golden State's $15.1M mid-level for a run at James — the clearest tell yet of where GSW thinks this is going. <a href="https://sports.yahoo.com/articles/nba-free-agency-2026-winners-150005370.html" target="_blank">Source ↗</a></div></div>
+    <div class="item"><div class="d">Jul 2 · <span class="breaking">New</span>NBA.com/Shams</div><div class="h">OVERNIGHT: GRIZZLIES SHIP ALDAMA TO DALLAS</div><div class="s muted">Memphis trades Santi Aldama (14.0 ppg / 6.7 rpg) to the Mavericks for AJ Johnson, a protected 2030 Warriors first and two future seconds — frontcourt help around Flagg and AD. Also cleared the wire: the champion Knicks retain Landry Shamet (4yr/$24M) and Jose Alvarado (3yr/$14M+); Moritz Wagner → Nets (2yr). <a href="https://www.nba.com/news/mavericks-grizzlies-santi-aldama-trade" target="_blank">Source ↗</a></div></div>
+    <div class="item"><div class="d">Jul 1 · Multiple</div><div class="h">KUMINGA U-TURN: BACK TO ATLANTA ON $24.3M</div><div class="s muted">Hours after the Hawks declined his team option, they re-signed him at the same number. Also in the late wave: Kelly Oubre Jr. → Pacers (2yr/~$17M), Julian Champagnie re-signs SAS (3/$45M), Sandro Mamukelashvili → Lakers (4/$52M). <a href="https://sports.yahoo.com/articles/nba-free-agency-2026-winners-150005370.html" target="_blank">Source ↗</a></div></div>
+    <div class="item"><div class="d">Jul 1 · CBS/Yahoo</div><div class="h">ROBINSON'S BOSTON DEAL LANDS AT 3YR/$47.4M</div><div class="s muted">Meanwhile the last big RFA standoff: Jalen Duren met the Lakers twice, Detroit intends to match anything, and Sacramento is lurking. <a href="https://www.cbssports.com/nba/news/nba-free-agency-2026-live-updates-trade-rumors-news-june-30/live/" target="_blank">Source ↗</a></div></div>
+    <div class="item"><div class="d">Jul 1 · Yahoo</div><div class="h">DRAYMOND'S OPT-OUT WAS A LEBRON PLAY</div><div class="s muted">Green walked away from a guaranteed $27.7M specifically to open Golden State's $15.1M mid-level for a run at James — the clearest tell yet of where GSW thinks this is going. <a href="https://sports.yahoo.com/articles/nba-free-agency-2026-winners-150005370.html" target="_blank">Source ↗</a></div></div>
     <div class="item"><div class="d">Jul 1 · Multiple</div><div class="h">DAY-1 FLURRY: REAVES STAYS IN LA ON $185M</div><div class="s muted">Austin Reaves re-signs (4yr/$185M); Coby White re-signs CHA (3/$74M); Al Horford declines his $6M option and returns to GSW (2/$14M); Mark Williams → Suns (3/$38M); Bogdan Bogdanović → Rockets (1yr). <a href="https://www.nbcsports.com/nba/live/2026-nba-free-agency-live-tracker-updates-news-rumors-top-players-signings-trades" target="_blank">Source ↗</a></div></div>
     <div class="item"><div class="d">Jul 1 · Multiple</div><div class="h">SECOND WAVE: TOBIAS HARRIS JOINS THE WEST CHAMPS</div><div class="s muted">Harris → Spurs (2/$31M). Also: Jaxson Hayes → Jazz (2/$12M), Jonathan Isaac re-signs ORL (1/$8M), Precious Achiuwa re-signs SAC (2/$11.5M). <a href="https://www.nbcsports.com/nba/live/2026-nba-free-agency-live-tracker-updates-news-rumors-top-players-signings-trades" target="_blank">Source ↗</a></div></div>
     <div class="item"><div class="d">Jul 1 · Yahoo/HR</div><div class="h">HARDEN DECLINES OPTION, DEEP IN CLEVELAND TALKS</div><div class="s muted">The Cavs' answer to their half-court creation gap — a deal is expected to come together after the moratorium. <a href="https://sports.yahoo.com/nba/live/nba-free-agency-2026-james-harden-declines-option-while-negotiating-with-cavs-lebron-james-lakers-decision-looms-182955882.html" target="_blank">Source ↗</a></div></div>
@@ -391,7 +410,7 @@
   <h3>Front-office verdict</h3>
   <p>Unlike almost every other contender, San Antonio is <b>not hard-capped and not apron-squeezed</b> — roughly $188M committed (projected) against a $200.43M tax line, with the full mid-level available and movable mid-size salaries (Keldon Johnson $17.5M expiring, Luke Kornet ~$10.3M) as clean trade ballast. The asset chest (own picks plus a strong swap/second stock) remains among the league's best. Grade for the offseason to date: <span class="grade A">A-</span> — smart marginal adds, with the big swing still to come.</p>
 
-  <div class="callout"><b>Three priorities from today to opening night:</b> (1) Land a Finals-level creator — LeBron with engineered room, or Simons/Markkanen by trade. (2) Keep the defensive identity intact — don't overpay for offense with Wemby's supporting shell. (3) Re-sign the useful vets (Olynyk, Barnes) on minimums and preserve July flexibility for the swing.</div>
+  <div class="callout"><b>Three priorities from today to opening night:</b> (1) Land a Finals-level creator — LeBron with engineered room, or Markkanen by trade. (2) Keep the defensive identity intact — don't overpay for offense with Wemby's supporting shell. (3) Re-sign the useful vets (Olynyk, Barnes) on minimums and preserve July flexibility for the swing.</div>
 </section>
 
 <!-- ============ LEAGUE OVERVIEW ============ -->
@@ -440,6 +459,7 @@
     <tr><td>Jul 1</td><td><b>Day-1 signing flurry</b></td><td>Reaves re-signs LAL (4/$185M); C. White CHA (3/$74M); Horford GSW (2/$14M); M. Williams→PHX (3/$38M); Harris→SAS (2/$31M); Hayes→UTA; Robinson→BOS; Isaac ORL; Achiuwa SAC; Bogdanović→HOU; Heat add THJ &amp; Fontecchio</td></tr>
     <tr><td>Jul 1 (late)</td><td><b>Kuminga U-turn + second wave</b></td><td>Kuminga re-signs ATL ($24.3M); Oubre→IND; Champagnie re-signs SAS (3/$45M); Mamukelashvili→LAL (4/$52M); Robinson's BOS terms land at 3/$47.4M; Duren RFA talks (LAL/DET/SAC)</td></tr>
     <tr><td>Jul 1 (late)</td><td>LeBron market takes shape</td><td>GSW ($15.1M MLE) &amp; CLE lead; SAS the only outright-cap suitor; PHI &amp; ORL register interest</td></tr>
+    <tr><td>Jul 1 (overnight)</td><td>Grizzlies trade Aldama to Dallas</td><td>Mavs add a stretch big next to Flagg &amp; AD for AJ Johnson + a protected 2030 GSW first</td></tr>
     <tr><td>Jul 6</td><td>Moratorium ends (upcoming)</td><td>Deals can be signed; LeBron & RFA dominoes expected to fall</td></tr>
   </table>
 </section>
@@ -594,7 +614,7 @@
   <p class="muted">Two boards: a <b>power ranking of who's still available</b>, and a complete <b>moves tracker</b> showing every agreement and where each player landed. Terms per public reporting; formal signings occur after the July 6 moratorium.</p>
 
   <h3>Available Free Agents — Power Ranking</h3>
-  <p class="muted" style="font-size:13px">Ranked by market impact. Updated through the evening of July 1.</p>
+  <p class="muted" style="font-size:13px">Ranked by market impact. Updated through the overnight wire of July 1–2.</p>
   <table>
     <tr><th>#</th><th>Player</th><th>Status</th><th>Market</th><th>Miami angle</th></tr>
     <tr><td><b>1</b></td><td><b>LeBron James</b></td><td>UFA · can't sign until Jul 6</td><td>GSW &amp; CLE lead; SAS the only outright-money suitor; PHI/ORL interested</td><td>Minimum-only long shot — see the <a href="#lebron">suitor ranking</a></td></tr>
@@ -614,18 +634,20 @@
   <p class="muted" style="font-size:13px">Every agreement so far, newest first. <span class="pill hot">NEW</span> = added this update.</p>
   <table>
     <tr><th>Date</th><th>Player</th><th>Signed With</th><th>Terms</th><th>Type</th><th>Grade</th></tr>
-    <tr><td>Jul 1</td><td>Jonathan Kuminga <span class="pill hot">NEW</span></td><td><b>Atlanta</b> (re-sign after option declined)</td><td>$24.3M</td><td>Re-sign</td><td><span class="grade C">C+</span></td></tr>
-    <tr><td>Jul 1</td><td>Kelly Oubre Jr. <span class="pill hot">NEW</span></td><td><b>Indiana</b></td><td>2yr / ~$17M</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Julian Champagnie <span class="pill hot">NEW</span></td><td><b>San Antonio</b> (re-sign)</td><td>3yr / $45M</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Sandro Mamukelashvili <span class="pill hot">NEW</span></td><td><b>LA Lakers</b></td><td>4yr / $52M</td><td>UFA</td><td><span class="grade B">B-</span></td></tr>
-    <tr><td>Jul 1</td><td>Tobias Harris <span class="pill hot">NEW</span></td><td><b>San Antonio</b></td><td>2yr / $31M</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Al Horford <span class="pill hot">NEW</span></td><td><b>Golden State</b> (re-sign)</td><td>2yr / $14M (declined $6M PO)</td><td>Re-sign</td><td><span class="grade A">A-</span></td></tr>
-    <tr><td>Jul 1</td><td>Coby White <span class="pill hot">NEW</span></td><td><b>Charlotte</b> (re-sign)</td><td>3yr / $74M</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Mark Williams <span class="pill hot">NEW</span></td><td><b>Phoenix</b></td><td>3yr / $38M</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Bogdan Bogdanović <span class="pill hot">NEW</span></td><td><b>Houston</b></td><td>1yr</td><td>UFA</td><td><span class="grade B">B+</span></td></tr>
-    <tr><td>Jul 1</td><td>Jaxson Hayes <span class="pill hot">NEW</span></td><td><b>Utah</b></td><td>2yr / $12M (TO yr 2)</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Jonathan Isaac <span class="pill hot">NEW</span></td><td><b>Orlando</b> (re-sign)</td><td>1yr / $8M</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
-    <tr><td>Jul 1</td><td>Precious Achiuwa <span class="pill hot">NEW</span></td><td><b>Sacramento</b> (re-sign)</td><td>2yr / $11.5M</td><td>Re-sign</td><td><span class="grade B">B-</span></td></tr>
+    <tr><td>Jul 2</td><td>Anfernee Simons <span class="pill hot">NEW</span></td><td><b>Philadelphia</b></td><td>reported</td><td>UFA</td><td><span class="grade B">B+</span></td></tr>
+    <tr><td>Jul 1</td><td>Santi Aldama</td><td><b>Dallas</b> (trade from Memphis)</td><td>AJ Johnson + 2030 GSW 1st (prot.) + two 2nds</td><td>Trade</td><td><span class="grade B">B+</span></td></tr>
+    <tr><td>Jul 1</td><td>Jonathan Kuminga</td><td><b>Atlanta</b> (re-sign after option declined)</td><td>$24.3M</td><td>Re-sign</td><td><span class="grade C">C+</span></td></tr>
+    <tr><td>Jul 1</td><td>Kelly Oubre Jr.</td><td><b>Indiana</b></td><td>2yr / ~$17M</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Julian Champagnie</td><td><b>San Antonio</b> (re-sign)</td><td>3yr / $45M</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Sandro Mamukelashvili</td><td><b>LA Lakers</b></td><td>4yr / $52M</td><td>UFA</td><td><span class="grade B">B-</span></td></tr>
+    <tr><td>Jul 1</td><td>Tobias Harris</td><td><b>San Antonio</b></td><td>2yr / $31M</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Al Horford</td><td><b>Golden State</b> (re-sign)</td><td>2yr / $14M (declined $6M PO)</td><td>Re-sign</td><td><span class="grade A">A-</span></td></tr>
+    <tr><td>Jul 1</td><td>Coby White</td><td><b>Charlotte</b> (re-sign)</td><td>3yr / $74M</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Mark Williams</td><td><b>Phoenix</b></td><td>3yr / $38M</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Bogdan Bogdanović</td><td><b>Houston</b></td><td>1yr</td><td>UFA</td><td><span class="grade B">B+</span></td></tr>
+    <tr><td>Jul 1</td><td>Jaxson Hayes</td><td><b>Utah</b></td><td>2yr / $12M (TO yr 2)</td><td>UFA</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Jonathan Isaac</td><td><b>Orlando</b> (re-sign)</td><td>1yr / $8M</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
+    <tr><td>Jul 1</td><td>Precious Achiuwa</td><td><b>Sacramento</b> (re-sign)</td><td>2yr / $11.5M</td><td>Re-sign</td><td><span class="grade B">B-</span></td></tr>
     <tr><td>Jul 1</td><td>Tim Hardaway Jr.</td><td><b>Miami</b></td><td>1yr / $6.5M</td><td>UFA</td><td><span class="grade A">A-</span></td></tr>
     <tr><td>Jul 1</td><td>Simone Fontecchio</td><td><b>Miami</b> (re-sign)</td><td>re-sign (Bird)</td><td>Re-sign</td><td><span class="grade B">B</span></td></tr>
     <tr><td>Jun 30</td><td>Austin Reaves</td><td><b>LA Lakers</b> (re-sign)</td><td>4yr / $185M</td><td>Re-sign</td><td><span class="grade A">A</span></td></tr>
@@ -766,7 +788,7 @@
     <div class="card">
       <h4>Bench &amp; closing lineup</h4>
       <p class="scout"><b>Bench:</b> Dylan Harper (6th man), Julian Champagnie, Keldon Johnson (until traded), Luke Kornet, Carter Bryant, rookies.</p>
-      <p class="scout"><b>Projected closing five:</b> Fox — Harper/Castle — Vassell — <b>[creator TBD]</b> — Wemby. Slot LeBron, Simons or Markkanen into that fourth spot and this is the best closing lineup in the sport.</p>
+      <p class="scout"><b>Projected closing five:</b> Fox — Harper/Castle — Vassell — <b>[creator TBD]</b> — Wemby. Slot LeBron or Markkanen into that fourth spot and this is the best closing lineup in the sport.</p>
     </div>
   </div>
 
@@ -807,7 +829,7 @@
     <div class="card"><h4>Pros of LeBron to San Antonio</h4><ul class="tight scout"><li>The <b>exact</b> fix for the Finals gap: an all-time halfcourt creator and closer</li><li>Only suitor able to engineer real money (~$15–20M via a Keldon clear-out) — every rival offers an MLE or minimum</li><li>Mentorship for Wemby; Pop-era institutional pull; a two-way, ready-made contender</li></ul></div>
     <div class="card"><h4>Cons / obstacles</h4><ul class="tight scout"><li>Age 41 vs. the youngest core in the contender class — a one-or-two-year rental on a five-year timeline</li><li>Usage overlap with Fox; both want the ball in the same spots late</li><li>Creating the room costs Keldon plus renounced depth — real roster pain if he picks GSW anyway</li></ul></div>
   </div>
-  <div class="warnbox"><b>Verdict (14% league-wide, but the best pitch in basketball):</b> San Antonio should pursue aggressively at the engineered-room number and walk away from anything more. If LeBron chooses Curry's gravity over Wemby's future, pivot the same week to the <a href="#creative">Simons/Markkanen trade tracks</a> — the money and matching salary are already lined up either way.</div>
+  <div class="warnbox"><b>Verdict (14% league-wide, but the best pitch in basketball):</b> San Antonio should pursue aggressively at the engineered-room number and walk away from anything more. If LeBron chooses Curry's gravity over Wemby's future, pivot the same week to the <a href="#creative">Markkanen trade track</a> — the money and matching salary are already lined up either way.</div>
 </section>
 
 <!-- ============ SHOOTING REPORT ============ -->
@@ -817,7 +839,7 @@
   <table>
     <tr><th>Target</th><th>Status</th><th>Creation</th><th>Fit w/ Fox + Wemby</th><th>Cost</th><th class="r">Likelihood</th></tr>
     <tr><td><b>LeBron James</b></td><td>UFA (signs after Jul 6)</td><td>All-time</td><td>The complete fix; defense stays elite</td><td>Engineered room (~$15–20M)</td><td class="r">Med</td></tr>
-    <tr><td><b>Anfernee Simons</b></td><td>Trade (POR guard logjam post-Morant)</td><td>Deep shooting + PnR scoring</td><td>Instant halfcourt points; hide him defensively next to Wemby</td><td>Keldon + Kornet + pick(s)</td><td class="r">Med-High</td></tr>
+    <tr><td><b>Anfernee Simons</b> <span style="color:#d9776f;font-weight:700;font-size:11px;letter-spacing:.5px">· OFF BOARD (PHI)</span></td><td>Trade (POR guard logjam post-Morant)</td><td>Deep shooting + PnR scoring</td><td>Instant halfcourt points; hide him defensively next to Wemby</td><td>Keldon + Kornet + pick(s)</td><td class="r">Med-High</td></tr>
     <tr><td><b>Lauri Markkanen</b></td><td>Trade (UTA rebuilding)</td><td>Elite off-ball, self-creation vs closeouts</td><td>7-foot spacing next to Wemby is a cheat code</td><td>Vassell/Keldon + picks</td><td class="r">Med</td></tr>
     <tr><td><b>James Harden</b></td><td>UFA — deep in CLE talks</td><td>Elite PnR brain, declining burst</td><td>Would run the bench units</td><td>MLE-plus</td><td class="r">Low</td></tr>
     <tr><td><b>Cam Thomas</b></td><td>RFA (~$6M QO)</td><td>Volume shot-making</td><td>Bench scoring; defense hidden by Wemby</td><td>S&amp;T / offer sheet</td><td class="r">Low-Med</td></tr>
@@ -825,7 +847,7 @@
   </table>
   <div class="grid2">
     <div class="card"><h4>Recommendation — Plan A</h4><p class="scout">Run the <b>LeBron pursuit to its conclusion first</b> (decision expected after July 6). Simultaneously agree to terms with an MLE shooter (Trent Jr. tier) contingent on cap sequencing, and re-sign Olynyk/Barnes on minimums.</p></div>
-    <div class="card"><h4>Recommendation — Plan B</h4><p class="scout">If LeBron goes elsewhere, execute the <b>Simons trade</b> (Keldon + Kornet + a pick) the same week — the cleanest creation upgrade at the lowest core cost — and keep the Markkanen package (Vassell-based) in reserve for the deadline.</p></div>
+    <div class="card"><h4>Recommendation — Plan B</h4><p class="scout">If LeBron goes elsewhere, execute the <b>Markkanen trade</b> (Vassell-based) the same week — with Simons now off the board (signed in Philadelphia, Jul 2), Markkanen is the cleanest creation upgrade left, and the matching salary and aggregation rights are already lined up.</p></div>
   </div>
   <div class="note">Creation/fit grades are archetype-level scouting; playoff tracking splits will be attached as 2025-26 postseason data finalizes.</div>
 </section>
@@ -840,8 +862,8 @@
     <p class="scout"><b>Spurs send:</b> Keldon Johnson ($17.5M exp) + a second. <b>Spurs get:</b> nothing but room — Brooklyn absorbs into cap space. <b>Why SAS:</b> opens the engineered LeBron money (or clean MLE + tax cushion). <b>Why BKN:</b> a productive expiring plus a pick for nothing. <b>Probability:</b> High if LeBron signals yes. <b>Grade:</b> <span class="grade B">B+</span>.</p>
   </details>
   <details>
-    <summary>Aggressive — Keldon + Kornet + pick for Anfernee Simons</summary>
-    <p class="scout"><b>Spurs send:</b> Keldon ($17.5M) + Kornet ($10.3M) + a protected first. <b>Spurs get:</b> Anfernee Simons ($27.7M). <b>Why SAS:</b> the exact creation/deep-shooting archetype, age-aligned with the core; matching is clean. <b>Why POR:</b> Morant's arrival makes Simons redundant; they get a scoring wing, a rotation big and a pick. <b>Probability:</b> Med-High. <b>Grade:</b> <span class="grade A">A-</span> — <b>Plan B if LeBron passes</b>. Preloaded in the <a href="#trademachine">Trade Machine</a>.</p>
+    <summary>Aggressive — Keldon + Kornet + pick for Anfernee Simons (OFF BOARD — signed PHI)</summary>
+    <p class="scout"><b>Spurs send:</b> Keldon ($17.5M) + Kornet ($10.3M) + a protected first. <b>Spurs get:</b> Anfernee Simons ($27.7M). <b>Why SAS:</b> the exact creation/deep-shooting archetype, age-aligned with the core; matching is clean. <b>Why POR:</b> Morant's arrival makes Simons redundant; they get a scoring wing, a rotation big and a pick. <b>Probability:</b> Med-High. <b>Grade:</b> <span class="grade A">A-</span> — <b>Off the board — Simons signed with Philadelphia (Jul 2); this track is now moot, kept only for reference.</b> The live Plan B is the Markkanen track. Still modelable in the <a href="#trademachine">Trade Machine</a>.</p>
   </details>
   <details>
     <summary>Big swing — Vassell + Keldon for Lauri Markkanen</summary>
@@ -864,7 +886,7 @@
   <table>
     <tr><th>#</th><th>Player</th><th>Team/Status</th><th>Acq. cost</th><th>Fit</th><th>Age</th><th class="r">Likelihood</th><th>Rec.</th></tr>
     <tr><td>1</td><td>LeBron James</td><td>UFA (Jul 6)</td><td>Engineered room ~$15–20M</td><td>The Finals-gap fix; only SAS can pay real money</td><td>41</td><td class="r">Med</td><td><span class="grade A">Pursue</span></td></tr>
-    <tr><td>2</td><td>Anfernee Simons</td><td>Trade (POR)</td><td>Keldon + Kornet + pick</td><td>Creation + deep shooting, age-aligned</td><td>27</td><td class="r">Med-High</td><td><span class="grade A">Pursue</span></td></tr>
+    <tr><td>2</td><td>Anfernee Simons <span style="color:#d9776f;font-weight:700;font-size:11px;letter-spacing:.5px">· OFF BOARD (PHI)</span></td><td>Trade (POR)</td><td>Keldon + Kornet + pick</td><td>Creation + deep shooting, age-aligned</td><td>27</td><td class="r">—</td><td><span class="grade C">Off board</span></td></tr>
     <tr><td>3</td><td>Lauri Markkanen</td><td>Trade (UTA)</td><td>Vassell/Keldon + picks</td><td>7-foot elite spacing next to Wemby</td><td>29</td><td class="r">Med</td><td><span class="grade A">Target</span></td></tr>
     <tr><td>4</td><td>Gary Trent Jr.</td><td>UFA</td><td>MLE</td><td>Starter-level 3&amp;D shooting</td><td>27</td><td class="r">Med-High</td><td><span class="grade A">Target</span></td></tr>
     <tr><td>5</td><td>Malik Beasley</td><td>UFA</td><td>MLE / min</td><td>Movement shooting, gravity</td><td>29</td><td class="r">Med</td><td><span class="grade B">Target</span></td></tr>
@@ -883,12 +905,12 @@
   <h2><span class="num">12B</span>The Dream Board <span class="pill hot">Swing for the fences</span></h2>
   <p class="lead">If the market broke San Antonio's way, these are the moves that turn the reigning West champs into a <b>runaway title favorite</b>. Unlike Miami's version of this board, none of these require cap gymnastics — the Spurs' flexibility and pick chest make every one legally straightforward. The question is price and willingness.</p>
 
-  <div class="warnbox"><b>The flexibility reality check:</b> San Antonio sits ~$188.6M committed with no hard cap, ~$20M of first-apron headroom, aggregation rights, the full MLE, and one of the best pick chests in basketball. Matching salary is trivial: Keldon ($17.5M) + Kornet ($10.3M) legally returns up to ~$56M; add Vassell ($27M) and a max player matches. The binding constraint isn't the CBA — it's <b>how much of the Castle/Harper/Bryant future to spend on the present</b>. Model any of these in the <a href="#trademachine">Trade Machine</a> — the Simons and Markkanen templates are preloaded.</div>
+  <div class="warnbox"><b>The flexibility reality check:</b> San Antonio sits ~$188.6M committed with no hard cap, ~$20M of first-apron headroom, aggregation rights, the full MLE, and one of the best pick chests in basketball. Matching salary is trivial: Keldon ($17.5M) + Kornet ($10.3M) legally returns up to ~$56M; add Vassell ($27M) and a max player matches. The binding constraint isn't the CBA — it's <b>how much of the Castle/Harper/Bryant future to spend on the present</b>. Model any of these in the <a href="#trademachine">Trade Machine</a> — the Markkanen template is preloaded (the Simons track is now moot; he signed in Philadelphia).</div>
 
   <h3>Tier 1 — Attainable dreams (hard but real)</h3>
   <table>
     <tr><th>Target</th><th>Path</th><th>Realistic cost</th><th>Why it's a dream next to Fox + Wemby</th><th class="r">Odds</th></tr>
-    <tr><td><b>Anfernee Simons</b> (SG)</td><td>Trade</td><td>Keldon + Kornet + protected 1st</td><td>Deep-range gravity and PnR scoring — the halfcourt oxygen the Finals lacked, at the lowest core cost.</td><td class="r">~25%</td></tr>
+    <tr><td><b>Anfernee Simons</b> (SG) <span style="color:#d9776f;font-weight:700;font-size:11px;letter-spacing:.5px">· OFF BOARD (PHI)</span></td><td>Trade</td><td>Keldon + Kornet + protected 1st</td><td>Deep-range gravity and PnR scoring — the halfcourt oxygen the Finals lacked. <i>Signed with Philadelphia; no longer available.</i></td><td class="r">off board</td></tr>
     <tr><td><b>Lauri Markkanen</b> (PF)</td><td>Trade</td><td>Vassell + Keldon + pick</td><td>A 7-foot 40% shooter who turns Wemby's rim gravity into open threes forever. Utah's rebuild makes him gettable.</td><td class="r">~18%</td></tr>
     <tr><td><b>LeBron James</b> (F)</td><td>Free agency</td><td>Engineered room (~$15–20M) + Keldon clear-out</td><td>An all-time closer and the loudest possible torch-pass to Wemby. The one suitor who can pay him real money is this one.</td><td class="r">~14%</td></tr>
   </table>
@@ -908,7 +930,7 @@
     <tr><td><b>A disgruntled superstar wing</b></td><td>If any top-15 two-way wing forces his way out mid-season, San Antonio's combination of matching salary, apron room and picks makes it the best-positioned bidder in the league. Standing deadline posture.</td><td class="r">Monitor</td></tr>
   </table>
 
-  <div class="callout"><b>Dream Board doctrine:</b> the single most valuable archetype for <i>this</i> roster is a <b>high-volume shot-maker who scales off-ball</b> — Simons and Markkanen are the platonic fits, LeBron is the transcendence option. Wemby's rim gravity is the fulcrum; every dream here is about weaponizing it. Spend flexibility, protect Castle/Harper/Bryant, and never trade the 2027+ unprotecteds for anyone on the wrong side of 30 not named LeBron.</div>
+  <div class="callout"><b>Dream Board doctrine:</b> the single most valuable archetype for <i>this</i> roster is a <b>high-volume shot-maker who scales off-ball</b> — Markkanen is the platonic fit, LeBron is the transcendence option. Wemby's rim gravity is the fulcrum; every dream here is about weaponizing it. Spend flexibility, protect Castle/Harper/Bryant, and never trade the 2027+ unprotecteds for anyone on the wrong side of 30 not named LeBron.</div>
 </section>
 
 <!-- ============ BLUEPRINT ============ -->
@@ -922,7 +944,7 @@
     <tr><td>2</td><td>Sign an MLE shooter (Trent Jr. / Beasley)</td><td>Full NT-MLE</td><td class="r">~+600</td></tr>
     <tr><td>3</td><td>Run the LeBron pursuit to a decision (Jul 6–8)</td><td>Keldon clear-out ready</td><td class="r">gate</td></tr>
     <tr><td>4a</td><td><b>If yes:</b> sign LeBron to the engineered number</td><td>Room after clear-out</td><td class="r">~+400</td></tr>
-    <tr><td>4b</td><td><b>If no:</b> execute Simons (or Markkanen) that week</td><td>Keldon+Kornet(+Vassell) trade</td><td class="r">~+450</td></tr>
+    <tr><td>4b</td><td><b>If no:</b> execute Markkanen that week</td><td>Keldon+Kornet(+Vassell) trade</td><td class="r">~+450</td></tr>
     <tr><td>5</td><td><b>Deadline/buyout:</b> veteran closer insurance</td><td>BAE / pro-rated min</td><td class="r">~+400</td></tr>
   </table>
   <div class="grid2">
@@ -1106,13 +1128,13 @@
     <tr><td><b>13</b></td><td><b>Orlando</b></td><td>4</td><td>Banchero–Wagner–Suggs defense travels; re-signing Isaac keeps the identity. Offense remains the question.</td></tr>
     <tr><td><b>14</b></td><td><b>Boston</b></td><td>4</td><td>Tatum &amp; Brown keep the floor high and Robinson patches the rim, but the 2nd apron froze the roster.</td></tr>
     <tr><td><b>15</b></td><td><b>Philadelphia</b></td><td>4</td><td>Maxey + McCain + Wade around two brittle stars — top-6 healthy, lottery-adjacent if not.</td></tr>
-    <tr><td><b>16</b></td><td><b>Dallas</b></td><td>4</td><td>Flagg + AD is a monster defensive axis; guard health (Kyrie) decides whether it's playoffs or purgatory.</td></tr>
+    <tr><td><b>16</b></td><td><b>Dallas</b></td><td>4</td><td>Flagg + AD is a monster defensive axis; guard health (Kyrie) decides whether it's playoffs or purgatory. Aldama (via MEM) adds a stretch-four rotation piece.</td></tr>
     <tr><td><b>17</b></td><td><b>Portland</b></td><td>4</td><td>Morant turbocharges an athletic, defensive young core; shooting and health are the swing factors.</td></tr>
     <tr><td><b>18</b></td><td><b>Atlanta</b></td><td>4</td><td>Daniels-led defense and length, and Kuminga is back ($24.3M) — but the lead-creator hole caps it.</td></tr>
     <tr><td><b>19</b></td><td><b>Chicago</b></td><td>5</td><td>Giddey + Powell + Wilson is real offensive talent; the defense hasn't been addressed at all.</td></tr>
     <tr><td><b>20</b></td><td><b>Indiana</b></td><td>5</td><td>Everything rides on Haliburton's health; Oubre adds wing scoring but the margin is thin without the engine.</td></tr>
     <tr><td><b>21</b></td><td><b>Sacramento</b></td><td>5</td><td>Sabonis hub + DeRozan shot-making + a run at RFA Duren; still nobody to stop anyone.</td></tr>
-    <tr><td><b>22</b></td><td><b>Memphis</b></td><td>5</td><td>JJJ + Boozer is a sturdy new spine, but trading Morant leaves a lead-guard vacuum.</td></tr>
+    <tr><td><b>22</b></td><td><b>Memphis</b></td><td>5</td><td>JJJ + Boozer is a sturdy new spine, but trading Morant leaves a lead-guard vacuum; Aldama is out too (→ DAL) for picks.</td></tr>
     <tr><td><b>23</b></td><td><b>Phoenix</b></td><td>5</td><td>Booker + Bridges + Mark Williams is a playable trio; the depth and defense around them aren't.</td></tr>
     <tr><td><b>24</b></td><td><b>New Orleans</b></td><td>5</td><td>Murphy/Jones wings are excellent; the ranking is a bet on Zion's availability, as always.</td></tr>
     <tr><td><b>25</b></td><td><b>LA Clippers</b></td><td>6</td><td>The Kawhi teardown nets Ingram, Dick, Wagler and picks — a competent, going-nowhere-yet reset.</td></tr>
@@ -1262,7 +1284,7 @@
 
   <div style="margin:0 0 14px">
     <span class="fld" style="display:inline;margin-right:6px">Dream templates:</span>
-    <button class="tmpl-btn" data-tpl="simons">Simons → SAS (2-team)</button>
+    <button class="tmpl-btn" data-tpl="simons">Simons → SAS (off board · PHI)</button>
     <button class="tmpl-btn" data-tpl="mpj">Markkanen → SAS (2-team)</button>
     <button class="tmpl-btn" data-tpl="brown">Jaylen Brown → SAS (3-team)</button>
   </div>
@@ -1296,7 +1318,9 @@
   <h2><span class="num">18</span>Changelog</h2>
   <table>
     <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
-    <tr><td><b>NEW</b></td><td>Jul 1, 2026</td><td><b>Reader-first layout:</b> category quick-nav buttons in the hero (War Room button front and center), Cap &amp; Trade Machines moved to the bottom of the page (jump button up top), apron explainer collapsed and shrunk, all "planning aid / consult a capologist" fine print deleted, and the War Room sections rebuilt as full-width banners.</td></tr>
+    <tr><td><b>1.6</b></td><td>Jul 2, 2026</td><td><b>Phone menu + Simons pivot:</b> Added a sticky <b>Sections</b> jump menu for mobile (desktop sidebar untouched). <b>Anfernee Simons signed with Philadelphia</b> — logged in the tickers and Completed Moves Tracker, and San Antonio&#8217;s <b>Plan B is now Markkanen</b>: the creation plan, Dream Board, Blueprint and creative-trade tracks were repointed and the Simons entries flagged off the board (his Trade Machine template is labeled accordingly).</td></tr>
+    <tr><td><b>1.5</b></td><td>Jul 2, 2026</td><td><b>Overnight wire:</b> Folded in the Grizzlies–Mavericks trade (Santi Aldama → DAL for AJ Johnson, a protected 2030 GSW first and two seconds) across the tickers, Latest Verified Reports, Completed Moves Tracker, timeline and the DAL/MEM power-ranking notes. Also logged: Knicks retain Landry Shamet (4yr/$24M) and Jose Alvarado (3yr/$14M+); Moritz Wagner → Nets (2yr). No change on LeBron (GSW/CLE lead; signable Jul 6) or Harden (CLE talks ongoing). Timestamps refreshed; older NEW pills cleared.</td></tr>
+    <tr><td><b>1.4</b></td><td>Jul 1, 2026</td><td><b>Reader-first layout:</b> category quick-nav buttons in the hero (War Room button front and center), Cap &amp; Trade Machines moved to the bottom of the page (jump button up top), apron explainer collapsed and shrunk, all "planning aid / consult a capologist" fine print deleted, and the War Room sections rebuilt as full-width banners.</td></tr>
     <tr><td><b>1.3</b></td><td>Jul 1, 2026</td><td>Split the hero ticker into two labeled clocks — league-wide ("NBA · since the last league move") and team-specific. Trimmed the rally bar to a single saying for impact. Added the Insider Exclusive teaser in the Newswire.</td></tr>
     <tr><td><b>1.2</b></td><td>Jul 1, 2026</td><td><b>News-front redesign:</b> hero now leads with a Top Story banner and a live "since the last move" ticker (counts up from the most recent verified transaction). Removed the "How to use this document" box and the version chip — the page reads like a team news destination, not a manual. Version tracking lives here in the changelog only. Moved the Salary Cap Machine and Trade Machine below the Newswire so the news leads the page.</td></tr>
     <tr><td><b>1.1</b></td><td>Jul 1, 2026</td><td>Added the <b>&#8644; Bulls War Room</b> switch link (third companion edition launched). Corrected the Bulls team report (Coby White → CHA, Vučević off the books, Collins/Okoro/Dillingham and the room exception added).</td></tr>
@@ -1760,7 +1784,7 @@ document.querySelectorAll(".herologo,.navlogo img").forEach(el=>{el.src=LOGO_DAT
 })();
 
 /* ===== LAST-MOVE TICKERS (league + team) ===== */
-const LAST_MOVE={nba:"2026-07-02T02:00:00Z",team:"2026-07-02T01:00:00Z"};
+const LAST_MOVE={nba:"2026-07-02T18:30:00Z",team:"2026-07-02T01:00:00Z"};
 (function(){
   function run(id,ts){ const el=document.getElementById(id); if(!el) return;
     const t0=new Date(ts).getTime();
@@ -1772,6 +1796,22 @@ const LAST_MOVE={nba:"2026-07-02T02:00:00Z",team:"2026-07-02T01:00:00Z"};
       el.textContent=(dd?dd+"d ":"")+h+"h "+m+"m "+s+"s"; }
     fmt(); setInterval(fmt,1000); }
   run("tkClock",LAST_MOVE.nba); run("tkClockTeam",LAST_MOVE.team);
+})();
+
+/* ===== MOBILE SECTION MENU ===== */
+(function(){
+  var nav=document.querySelector('nav');
+  var btn=document.getElementById('mobnavBtn');
+  var panel=document.getElementById('mobnavPanel');
+  var box=document.getElementById('mobnavLinks');
+  var closeBtn=document.getElementById('mobnavClose');
+  if(!nav||!btn||!panel||!box) return;
+  nav.querySelectorAll('a.link, .cat').forEach(function(el){ box.appendChild(el.cloneNode(true)); });
+  function openM(){ panel.classList.add('open'); document.body.classList.add('mobnav-lock'); panel.setAttribute('aria-hidden','false'); }
+  function closeM(){ panel.classList.remove('open'); document.body.classList.remove('mobnav-lock'); panel.setAttribute('aria-hidden','true'); }
+  btn.addEventListener('click',openM);
+  if(closeBtn) closeBtn.addEventListener('click',closeM);
+  box.addEventListener('click',function(e){ if(e.target.closest('a')) closeM(); });
 })();
 </script>
 </body>
